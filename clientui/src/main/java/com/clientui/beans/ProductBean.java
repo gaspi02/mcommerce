@@ -1,4 +1,4 @@
-package com.clientui.clientui.beans;
+package com.clientui.beans;
 
 public class ProductBean {
 
