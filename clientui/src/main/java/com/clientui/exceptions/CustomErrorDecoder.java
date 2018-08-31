@@ -1,4 +1,4 @@
-package com.clientui.clientui.exceptions;
+package com.clientui.exceptions;
 
 
 import feign.Response;
