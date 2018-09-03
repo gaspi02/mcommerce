@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -32,11 +34,11 @@ public class ClientController {
 
 
     /*
-     * Étape (1)
-     * Opération qui récupère la liste des produits et on les affichent dans la page d'accueil.
-     * Les produits sont récupérés grâce à ProduitsProxy
-     * On fini par rentourner la page Accueil.html à laquelle on passe la liste d'objets "produits" récupérés.
-     * */
+    * Étape (1)
+    * Opération qui récupère la liste des produits et on les affichent dans la page d'accueil.
+    * Les produits sont récupérés grâce à ProduitsProxy
+    * On fini par rentourner la page Accueil.html à laquelle on passe la liste d'objets "produits" récupérés.
+    * */
     @RequestMapping("/")
     public String accueil(Model model){
 
@@ -48,10 +50,10 @@ public class ClientController {
     }
 
     /*
-     * Étape (2)
-     * Opération qui récupère les détails d'un produit
-     * On passe l'objet "produit" récupéré et qui contient les détails en question à  FicheProduit.html
-     * */
+    * Étape (2)
+    * Opération qui récupère les détails d'un produit
+    * On passe l'objet "produit" récupéré et qui contient les détails en question à  FicheProduit.html
+    * */
     @RequestMapping("/details-produit/{id}")
     public String ficheProduit(@PathVariable int id,  Model model){
 
@@ -63,9 +65,9 @@ public class ClientController {
     }
 
     /*
-     * Étape (3) et (4)
-     * Opération qui fait appel au microservice de commande pour placer une commande et récupérer les détails de la commande créée
-     * */
+    * Étape (3) et (4)
+    * Opération qui fait appel au microservice de commande pour placer une commande et récupérer les détails de la commande créée
+    * */
     @RequestMapping(value = "/commander-produit/{idProduit}/{montant}")
     public String passerCommande(@PathVariable int idProduit, @PathVariable Double montant,  Model model){
 
@@ -88,9 +90,9 @@ public class ClientController {
     }
 
     /*
-     * Étape (5)
-     * Opération qui fait appel au microservice de paiement pour traiter un paiement
-     * */
+    * Étape (5)
+    * Opération qui fait appel au microservice de paiement pour traiter un paiement
+    * */
     @RequestMapping(value = "/payer-commande/{idCommande}/{montantCommande}")
     public String payerCommande(@PathVariable int idCommande, @PathVariable Double montantCommande, Model model){
 
@@ -107,7 +109,7 @@ public class ClientController {
         Boolean paiementAccepte = false;
         //si le code est autre que 201 CREATED, c'est que le paiement n'a pas pu aboutir.
         if(paiement.getStatusCode() == HttpStatus.CREATED)
-            paiementAccepte = true;
+                paiementAccepte = true;
 
         model.addAttribute("paiementOk", paiementAccepte); // on envoi un Boolean paiementOk à la vue
 

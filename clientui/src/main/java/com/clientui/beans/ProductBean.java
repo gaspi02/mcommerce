@@ -1,7 +1,7 @@
 package com.clientui.beans;
 
-public class ProductBean {
 
+public class ProductBean {
 
     private int id;
 
@@ -14,7 +14,6 @@ public class ProductBean {
     private Double prix;
 
     public ProductBean() {
-
     }
 
     public int getId() {

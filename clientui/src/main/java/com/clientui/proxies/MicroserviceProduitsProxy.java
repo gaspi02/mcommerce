@@ -15,8 +15,8 @@ public interface MicroserviceProduitsProxy {
     List<ProductBean> listeDesProduits();
 
     /*
-     * Notez ici la notation @PathVariable("id") qui est différente de celle qu'on utlise dans le contrôleur
-     **/
+    * Notez ici la notation @PathVariable("id") qui est différente de celle qu'on utlise dans le contrôleur
+    **/
     @GetMapping( value = "/Produits/{id}")
     ProductBean recupererUnProduit(@PathVariable("id") int id);
 
